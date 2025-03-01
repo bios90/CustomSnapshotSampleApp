@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">CustomSnapshotSampleApp</string>
+    <string name="sign_up">Регистрация</string>
+    <string name="sign_in">Войти</string>
+    <string name="product">Продукт</string>
+    <string name="to_basket">В корзину</string>
+    <string name="buy">Купить</string>
+    <string name="products">Продукты</string>
+    <string name="add">Добавить</string>
 </resources>
