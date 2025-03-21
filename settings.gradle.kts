@@ -21,3 +21,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "CustomSnapshotSampleApp"
 include(":app")
+include(":core-test")

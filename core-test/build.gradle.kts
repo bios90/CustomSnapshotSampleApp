@@ -1,21 +1,18 @@
 plugins {
-    alias(libs.plugins.android.application)
+    alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
 }
 
 android {
-    namespace = "com.example.customsnapshotsampleapp"
+    namespace = "com.example.core_test"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.customsnapshotsampleapp"
         minSdk = 26
-        targetSdk = 34
-        versionCode = 1
-        versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles("consumer-rules.pro")
     }
 
     buildTypes {
@@ -41,27 +38,31 @@ android {
         unitTests.isIncludeAndroidResources = true
         unitTests.all {
             // exclude allure from robolectric shadowing
+            it.ignoreFailures = true
             it.systemProperty("org.robolectric.packagesToNotAcquire", "io.qameta.")
+            it.testLogging {
+                setEvents(listOf("STARTED", "PASSED", "FAILED", "SKIPPED", "STANDARD_OUT", "STANDARD_ERROR"))
+            }
+            it.maxHeapSize = "2g"
         }
     }
 }
 
 dependencies {
-    implementation(project(":core-test"))
+    //JUnit
+    implementation("androidx.test.ext:junit-ktx:1.2.1")
+    implementation("androidx.compose.ui:ui-test-junit4-android:1.7.8")
+    //Robolectric
+    api("org.robolectric:robolectric:4.14.1")
+    debugImplementation("androidx.compose.ui:ui-test-manifest:1.7.8")
+    //Allure
+    implementation("io.qameta.allure:allure-kotlin-model:2.4.0")
+    implementation("io.qameta.allure:allure-kotlin-commons:2.4.0")
+    implementation("io.qameta.allure:allure-kotlin-junit4:2.4.0")
+    api("io.qameta.allure:allure-kotlin-android:2.4.0")
 
     implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.lifecycle.runtime.ktx)
-    implementation(libs.androidx.activity.compose)
-    implementation(platform(libs.androidx.compose.bom))
-    implementation(libs.androidx.ui)
-    implementation(libs.androidx.ui.graphics)
-    implementation(libs.androidx.ui.tooling.preview)
-    implementation(libs.androidx.material3)
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
-    androidTestImplementation(platform(libs.androidx.compose.bom))
-    androidTestImplementation(libs.androidx.ui.test.junit4)
-    debugImplementation(libs.androidx.ui.tooling)
-    debugImplementation(libs.androidx.ui.test.manifest)
+    implementation(libs.androidx.appcompat)
+    implementation(libs.material)
+    implementation(libs.junit)
 }
