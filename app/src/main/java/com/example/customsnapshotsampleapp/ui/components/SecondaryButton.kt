@@ -1,7 +1,6 @@
 package com.example.roborazzisampleapp.ui.components
 
 import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
@@ -21,8 +20,7 @@ fun SecondaryButton(
     modifier: Modifier = Modifier,
 ) {
     OutlinedButton(
-        modifier = modifier
-            .fillMaxWidth(),
+        modifier = modifier,
         border = BorderStroke(1.dp, PurpleLight),
         shape = CircleShape,
         onClick = onClick,
