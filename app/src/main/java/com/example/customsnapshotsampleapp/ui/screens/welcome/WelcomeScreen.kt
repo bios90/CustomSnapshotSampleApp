@@ -57,6 +57,7 @@ fun WelcomeScreen(
                     modifier = Modifier
                         .padding(top = 86.dp)
                         .padding(horizontal = 36.dp)
+                        .fillMaxWidth()
                         .height(52.dp),
                     text = stringResource(R.string.sign_up),
                     onClick = {}
